@@ -24,6 +24,7 @@ import pydirectinput
 
 
 Point = Tuple[int, int]
+MOMENT_EPSILON = 1e-3
 
 
 @dataclass
@@ -70,6 +71,10 @@ class FishingBot:
                 img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
                 if img is not None:
                     templates[letter.upper()] = img
+            else:
+                print(f"[WARN] Template not found: {path}")
+        if not templates:
+            print("[WARN] No letter templates loaded; OCR will fail.")
         return templates
 
     def grab_frame(self) -> np.ndarray:
@@ -88,7 +93,7 @@ class FishingBot:
         if cv2.contourArea(contour) < self.config.min_contour_area:
             return None
         moments = cv2.moments(contour)
-        if moments["m00"] < 1e-3:
+        if moments["m00"] < MOMENT_EPSILON:
             return None
         cx = int(moments["m10"] / moments["m00"])
         cy = int(moments["m01"] / moments["m00"])
@@ -156,15 +161,22 @@ class FishingBot:
     def run(self) -> None:
         print("Starting fishing bot. Press Ctrl+C to exit.")
         while True:
-            frame = self.grab_frame()
-            pointer, target = self.detect_pointer_and_target(frame)
-            letter = self.detect_letter_prompt(frame) if self.stage_index < 3 else None
-            if pointer and target and letter:
-                angle_diff = self.relative_angle(frame, pointer, target)
-                if abs(angle_diff) <= self.config.angle_tolerance_deg:
-                    self.press_key(letter.lower())
-            self.maybe_restart_cycle()
-            time.sleep(self.config.loop_sleep_seconds)
+            try:
+                frame = self.grab_frame()
+                pointer, target = self.detect_pointer_and_target(frame)
+                letter = self.detect_letter_prompt(frame) if self.stage_index < 3 else None
+                if pointer and target and letter:
+                    angle_diff = self.relative_angle(frame, pointer, target)
+                    if abs(angle_diff) <= self.config.angle_tolerance_deg:
+                        self.press_key(letter.lower())
+                self.maybe_restart_cycle()
+                time.sleep(self.config.loop_sleep_seconds)
+            except KeyboardInterrupt:
+                print("Stopping bot.")
+                break
+            except Exception as exc:  # noqa: BLE001
+                print(f"[WARN] Loop error: {exc}")
+                time.sleep(0.1)
 
 
 if __name__ == "__main__":
