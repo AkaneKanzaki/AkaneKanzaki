@@ -25,6 +25,7 @@ import pydirectinput
 
 Point = Tuple[int, int]
 MOMENT_EPSILON = 1e-5
+SUPPORTED_LETTERS = ("q", "w", "e")
 
 
 @dataclass
@@ -55,6 +56,7 @@ class BotConfig:
     key_cooldown_seconds: float = 0.35
     restart_key: str = "2"
     loop_sleep_seconds: float = 0.02
+    stage_count: int = 3
 
 
 class FishingBot:
@@ -68,7 +70,7 @@ class FishingBot:
 
     def _load_templates(self) -> Dict[str, np.ndarray]:
         templates: Dict[str, np.ndarray] = {}
-        for letter in ("q", "w", "e"):
+        for letter in SUPPORTED_LETTERS:
             path = os.path.join(self.config.template_dir, f"{letter}.png")
             if os.path.exists(path):
                 img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
@@ -159,9 +161,9 @@ class FishingBot:
             return
         pydirectinput.press(key)
         self.last_press_time = now
-        if self.stage_index < 3:
+        if self.stage_index < self.config.stage_count:
             self.stage_index += 1
-            if self.stage_index == 3:
+            if self.stage_index == self.config.stage_count:
                 self.restart_at = now + self.config.restart_delay_seconds
 
     def maybe_restart_cycle(self) -> None:
@@ -178,7 +180,11 @@ class FishingBot:
             try:
                 frame = self.grab_frame()
                 pointer, target = self.detect_pointer_and_target(frame)
-                letter = self.detect_letter_prompt(frame) if self.stage_index < 3 else None
+                letter = (
+                    self.detect_letter_prompt(frame)
+                    if self.stage_index < self.config.stage_count
+                    else None
+                )
                 if pointer and target and letter:
                     angle_diff = self.relative_angle(frame, pointer, target)
                     if abs(angle_diff) <= self.config.angle_tolerance_deg:
