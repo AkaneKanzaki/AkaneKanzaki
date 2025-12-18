@@ -48,6 +48,9 @@ class BotConfig:
     template_dir: str = "templates"
     template_threshold: float = 0.55
     restart_delay_seconds: float = 4.0
+    key_cooldown_seconds: float = 0.35
+    restart_key: str = "2"
+    loop_sleep_seconds: float = 0.01
 
 
 class FishingBot:
@@ -85,7 +88,7 @@ class FishingBot:
         if cv2.contourArea(contour) < self.config.min_contour_area:
             return None
         moments = cv2.moments(contour)
-        if moments["m00"] == 0:
+        if moments["m00"] < 1e-3:
             return None
         cx = int(moments["m10"] / moments["m00"])
         cy = int(moments["m01"] / moments["m00"])
@@ -133,7 +136,7 @@ class FishingBot:
 
     def press_key(self, key: str) -> None:
         now = time.time()
-        if now - self.last_press_time < 0.35:
+        if now - self.last_press_time < self.config.key_cooldown_seconds:
             return
         pydirectinput.press(key)
         self.last_press_time = now
@@ -146,7 +149,7 @@ class FishingBot:
         if self.restart_at is None:
             return
         if time.time() >= self.restart_at:
-            pydirectinput.press("2")
+            pydirectinput.press(self.config.restart_key)
             self.stage_index = 0
             self.restart_at = None
 
@@ -161,7 +164,7 @@ class FishingBot:
                 if abs(angle_diff) <= self.config.angle_tolerance_deg:
                     self.press_key(letter.lower())
             self.maybe_restart_cycle()
-            time.sleep(0.01)
+            time.sleep(self.config.loop_sleep_seconds)
 
 
 if __name__ == "__main__":
