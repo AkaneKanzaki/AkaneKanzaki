@@ -26,6 +26,7 @@ import pydirectinput
 Point = Tuple[int, int]
 MOMENT_EPSILON = 1e-5
 SUPPORTED_LETTERS = ("q", "w", "e")
+CV2_ERROR = getattr(cv2, "Error", cv2.error)
 
 
 @dataclass
@@ -194,7 +195,7 @@ class FishingBot:
             except KeyboardInterrupt:
                 print("Stopping bot.")
                 break
-            except (mss.exception.ScreenShotError, cv2.error, OSError) as exc:
+            except (mss.exception.ScreenShotError, CV2_ERROR, OSError) as exc:
                 print(f"[WARN] Loop error: {exc}")
                 time.sleep(0.1)
 
