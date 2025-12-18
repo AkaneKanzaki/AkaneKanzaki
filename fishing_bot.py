@@ -75,9 +75,15 @@ class FishingBot:
                 if img is not None:
                     templates[letter.upper()] = img
                 else:
-                    print(f"[WARN] Template unreadable or corrupt: {path}")
+                    print(
+                        f"[WARN] Template unreadable or corrupt: {path}. "
+                        "Ensure it is a valid PNG image."
+                    )
             else:
-                print(f"[WARN] Template not found: {path}")
+                print(
+                    f"[WARN] Template not found: {path}. "
+                    "Please create the required template image file."
+                )
         if not templates:
             print("[WARN] No letter templates loaded; OCR will fail.")
         return templates
