@@ -20,6 +20,24 @@ Halo, saya Muhammad Rizky Aulia 👋<br>Perkenalkan, saya Rizky Aulia. Saat ini 
 ### 🔝 Top Contributed Repo
 ![](https://github-contributor-stats.vercel.app/api?username=AkaneKanzaki&limit=5&theme=dark&combine_all_yearly_contributions=true)
 
+## 🎣 Fishing Minigame Bot (Prototype)
+> Pengujian dilakukan di lingkungan Windows karena pydirectinput mengirimkan input keyboard langsung ke OS.
+
+1. Instal dependensi:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Siapkan template huruf Q/W/E di folder `templates/` (mis. `templates/q.png`, `templates/w.png`, `templates/e.png`) yang cocok dengan tampilan huruf di minigame.  
+3. Atur rentang warna HSV untuk jarum/panah dan target jika diperlukan di `fishing_bot.py`.  
+4. Jalankan bot:
+   ```bash
+   python fishing_bot.py
+   ```
+Bot akan:
+- Menangkap layar dengan `mss`, mendeteksi jarum/panah serta target melalui HSV masking, lalu menghitung sudut relatifnya.
+- Melakukan OCR berbasis template matching untuk huruf dinamis Q/W/E.
+- Menekan huruf saat jarum sejajar dengan target; setelah tiga huruf terpenuhi, menunggu 4 detik lalu menekan angka `2` untuk memulai ulang siklus.
+
 ---
 [![](https://visitcount.itsvg.in/api?id=AkaneKanzaki&icon=0&color=0)](https://visitcount.itsvg.in)
 
