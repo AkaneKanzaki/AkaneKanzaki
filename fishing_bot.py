@@ -73,7 +73,7 @@ class FishingBot:
             if os.path.exists(path):
                 img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
                 if img is not None:
-                    templates[letter.upper()] = img
+                    templates[letter] = img  # store as lowercase for consistency
                 else:
                     print(
                         f"[WARN] Template unreadable or corrupt: {path}. "
@@ -123,6 +123,7 @@ class FishingBot:
     @staticmethod
     def _angle_from_center(center: Point, point: Point) -> float:
         # Convert screen coords (y increases downward) to math coords (y upward) for atan2.
+        # Returns angle where 0° points to the right (East) and grows counterclockwise.
         dx = point[0] - center[0]
         dy = center[1] - point[1]
         return math.degrees(math.atan2(dy, dx))
@@ -132,6 +133,7 @@ class FishingBot:
         center = (w // 2, h // 2)
         pointer_angle = self._angle_from_center(center, pointer)
         target_angle = self._angle_from_center(center, target)
+        # Normalize difference into [-180, 180] so small angular errors are comparable.
         diff = (pointer_angle - target_angle + 180) % 360 - 180
         return diff
 
@@ -180,7 +182,7 @@ class FishingBot:
                 if pointer and target and letter:
                     angle_diff = self.relative_angle(frame, pointer, target)
                     if abs(angle_diff) <= self.config.angle_tolerance_deg:
-                        self.press_key(letter.lower())
+                        self.press_key(letter)
                 self.maybe_restart_cycle()
                 time.sleep(self.config.loop_sleep_seconds)
             except KeyboardInterrupt:
