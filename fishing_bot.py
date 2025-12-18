@@ -24,7 +24,7 @@ import pydirectinput
 
 
 Point = Tuple[int, int]
-MOMENT_EPSILON = 1e-3
+MOMENT_EPSILON = 1e-5
 
 
 @dataclass
