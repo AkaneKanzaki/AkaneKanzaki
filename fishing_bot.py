@@ -40,12 +40,15 @@ class BotConfig:
     pointer_hsv: HSVRange = field(
         default_factory=lambda: HSVRange((40, 60, 60), (80, 255, 255))
     )
+    # Default pointer hue range is green-ish; adjust to match in-game arrow/needle color.
     target_hsv: HSVRange = field(
         default_factory=lambda: HSVRange((0, 150, 150), (10, 255, 255))
     )
+    # Default target hue range is red-ish; adjust to the in-game target highlight.
     min_contour_area: int = 50
     angle_tolerance_deg: float = 6.0
-    letter_region: Tuple[int, int, int, int] = (0, 0, 320, 160)  # x, y, w, h
+    # Screen region (x, y, w, h) where Q/W/E prompts appear; tune for your layout.
+    letter_region: Tuple[int, int, int, int] = (0, 0, 320, 160)
     template_dir: str = "templates"
     template_threshold: float = 0.55
     restart_delay_seconds: float = 4.0
@@ -71,6 +74,8 @@ class FishingBot:
                 img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
                 if img is not None:
                     templates[letter.upper()] = img
+                else:
+                    print(f"[WARN] Template unreadable or corrupt: {path}")
             else:
                 print(f"[WARN] Template not found: {path}")
         if not templates:
@@ -111,6 +116,7 @@ class FishingBot:
 
     @staticmethod
     def _angle_from_center(center: Point, point: Point) -> float:
+        # Convert screen coords (y increases downward) to math coords (y upward) for atan2.
         dx = point[0] - center[0]
         dy = center[1] - point[1]
         return math.degrees(math.atan2(dy, dx))
@@ -174,7 +180,7 @@ class FishingBot:
             except KeyboardInterrupt:
                 print("Stopping bot.")
                 break
-            except Exception as exc:  # noqa: BLE001
+            except (mss.exception.ScreenShotError, cv2.error, OSError) as exc:
                 print(f"[WARN] Loop error: {exc}")
                 time.sleep(0.1)
 
