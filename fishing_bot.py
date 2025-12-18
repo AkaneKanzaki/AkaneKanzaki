@@ -54,7 +54,7 @@ class BotConfig:
     restart_delay_seconds: float = 4.0
     key_cooldown_seconds: float = 0.35
     restart_key: str = "2"
-    loop_sleep_seconds: float = 0.01
+    loop_sleep_seconds: float = 0.02
 
 
 class FishingBot:
