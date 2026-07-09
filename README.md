@@ -4,17 +4,8 @@ My work focuses on:
 Building High-Performance Products: Developing software ranging from mobile applications to scalable backend systems.
 Problem-Solving: Passionate about transforming complex ideas into robust, user-centric software solutions.
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://api.nullptr.icu/grs/api?username=AkaneKanzaki&show_icons=true&theme=onedark&include_all_commits=true&count_private=true&role=OWNER,ORGANIZATION_MEMBER,COLLABORATOR">
-  <img src="https://api.nullptr.icu/grs/api?username=AkaneKanzaki&show_icons=true&include_all_commits=true&count_private=true&role=OWNER,ORGANIZATION_MEMBER,COLLABORATOR">
-</picture>
+# My GitHub Stats
+![GitHub Stats Card](https://ghstats.dev/api/card?username=AkaneKanzaki&size=compact)
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://api.nullptr.icu/grs/api/top-langs/?username=AkaneKanzaki&layout=compact&theme=onedark&role=OWNER,ORGANIZATION_MEMBER&langs_count=10">
-  <img src="https://api.nullptr.icu/grs/api/top-langs/?username=AkaneKanzaki&layout=compact&role=OWNER,ORGANIZATION_MEMBER&langs_count=10">
-</picture>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://api.nullptr.icu/grs/api/wakatime?username=AkaneKanzaki&layout=compact&theme=onedark&hide=ObjectiveC,Objective-C,Text,Gitignore%20File,Properties">
-  <img src="https://api.nullptr.icu/grs/api/wakatime?username=AkaneKanzaki&layout=compact&hide=ObjectiveC,Objective-C,Text,Gitignore%20File,Properties">
-</picture>
+# Most Used Languages
+![Most Used Languages](https://ghstats.dev/api/langs?username=AkaneKanzaki)
