@@ -1,18 +1,20 @@
-About Me:
-I am a Software Engineer and an Informatics Education student. I am currently pursuing my degree in Computer and Informatics Engineering Education at UIN Sjech M. Djamil Djambek Bukittinggi.
-My work focuses on building high-performance products, ranging from mobile applications to scalable backend systems. I am passionate about transforming complex ideas into robust, user-centric software solutions.
+# About Me:
+I am a Software Engineer and an Informatics Education student currently pursuing a degree in Computer and Informatics Engineering Education at UIN Sjech M. Djamil Djambek Bukittinggi.
+My work focuses on:
+Building High-Performance Products: Developing software ranging from mobile applications to scalable backend systems.
+Problem-Solving: Passionate about transforming complex ideas into robust, user-centric software solutions.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://api.nullptr.icu/grs/api?username=Dr-TSNG&show_icons=true&theme=onedark&include_all_commits=true&count_private=true&role=OWNER,ORGANIZATION_MEMBER,COLLABORATOR">
-  <img src="https://api.nullptr.icu/grs/api?username=Dr-TSNG&show_icons=true&include_all_commits=true&count_private=true&role=OWNER,ORGANIZATION_MEMBER,COLLABORATOR">
+  <source media="(prefers-color-scheme: dark)" srcset="https://api.nullptr.icu/grs/api?username=AkaneKanzaki&show_icons=true&theme=onedark&include_all_commits=true&count_private=true&role=OWNER,ORGANIZATION_MEMBER,COLLABORATOR">
+  <img src="https://api.nullptr.icu/grs/api?username=AkaneKanzaki&show_icons=true&include_all_commits=true&count_private=true&role=OWNER,ORGANIZATION_MEMBER,COLLABORATOR">
 </picture>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://api.nullptr.icu/grs/api/top-langs/?username=Dr-TSNG&layout=compact&theme=onedark&role=OWNER,ORGANIZATION_MEMBER&langs_count=10">
-  <img src="https://api.nullptr.icu/grs/api/top-langs/?username=Dr-TSNG&layout=compact&role=OWNER,ORGANIZATION_MEMBER&langs_count=10">
+  <source media="(prefers-color-scheme: dark)" srcset="https://api.nullptr.icu/grs/api/top-langs/?username=AkaneKanzaki&layout=compact&theme=onedark&role=OWNER,ORGANIZATION_MEMBER&langs_count=10">
+  <img src="https://api.nullptr.icu/grs/api/top-langs/?username=AkaneKanzaki&layout=compact&role=OWNER,ORGANIZATION_MEMBER&langs_count=10">
 </picture>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://api.nullptr.icu/grs/api/wakatime?username=Dr_TSNG&layout=compact&theme=onedark&hide=ObjectiveC,Objective-C,Text,Gitignore%20File,Properties">
-  <img src="https://api.nullptr.icu/grs/api/wakatime?username=Dr_TSNG&layout=compact&hide=ObjectiveC,Objective-C,Text,Gitignore%20File,Properties">
+  <source media="(prefers-color-scheme: dark)" srcset="https://api.nullptr.icu/grs/api/wakatime?username=AkaneKanzaki&layout=compact&theme=onedark&hide=ObjectiveC,Objective-C,Text,Gitignore%20File,Properties">
+  <img src="https://api.nullptr.icu/grs/api/wakatime?username=AkaneKanzaki&layout=compact&hide=ObjectiveC,Objective-C,Text,Gitignore%20File,Properties">
 </picture>
