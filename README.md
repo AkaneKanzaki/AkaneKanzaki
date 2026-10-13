@@ -1,5 +1,5 @@
 # Hi, I'm Rizky
-I am a Software Engineer and student from Indonesia, specialized in mobile development and scalable software solutions.
+I am a Software Engineer from Indonesia, specialized in mobile development and scalable software solutions.
 
 ![GitHub Stats Card](https://ghstats.dev/api/card?username=AkaneKanzaki&size=compact)
 
